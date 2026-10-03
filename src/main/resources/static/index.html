@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Smart PG Management System</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+</head>
+
+
+<body>
+    <style>
+
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        border-radius: 10px;
+    }
+
+    h3 {
+        margin-bottom: 15px;
+    }
+
+</style>
+
+
+<!-- ============================= -->
+<!-- NAVBAR -->
+<!-- ============================= -->
+
+<nav class="navbar navbar-dark bg-dark">
+
+    <div class="container">
+
+        <span class="navbar-brand mb-0 h1">
+            Smart PG & Hostel Management
+        </span>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ============================= -->
+<!-- MAIN CONTAINER -->
+<!-- ============================= -->
+
+<div class="container mt-5">
+
+
+    <h2>Dashboard</h2>
+
+    <p class="text-muted">
+        Manage tenants, rooms, payments and complaints.
+    </p>
+
+
+
+    <!-- ============================= -->
+    <!-- DASHBOARD CARDS -->
+    <!-- ============================= -->
+
+    <!-- Dashboard Cards -->
+
+<div class="row mt-4">
+
+    <div class="col-md-3 mb-3">
+
+        <div class="card text-center shadow-sm border-0">
+
+            <div class="card-body">
+
+                <h6 class="text-muted">
+                    TOTAL TENANTS
+                </h6>
+
+                <h2
+                    id="tenantCount"
+                    class="fw-bold">
+
+                    0
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3 mb-3">
+
+        <div class="card text-center shadow-sm border-0">
+
+            <div class="card-body">
+
+                <h6 class="text-muted">
+                    TOTAL ROOMS
+                </h6>
+
+                <h2
+                    id="roomCount"
+                    class="fw-bold">
+
+                    0
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3 mb-3">
+
+        <div class="card text-center shadow-sm border-0">
+
+            <div class="card-body">
+
+                <h6 class="text-muted">
+                    PAYMENTS
+                </h6>
+
+                <h2
+                    id="paymentCount"
+                    class="fw-bold">
+
+                    0
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-3 mb-3">
+
+        <div class="card text-center shadow-sm border-0">
+
+            <div class="card-body">
+
+                <h6 class="text-muted">
+                    COMPLAINTS
+                </h6>
+
+                <h2
+                    id="complaintCount"
+                    class="fw-bold">
+
+                    0
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+    <!-- ================================================= -->
+    <!-- TENANT MANAGEMENT -->
+    <!-- ================================================= -->
+
+    <div class="mt-5">
+
+        <h3>Tenant Management</h3>
+
+
+        <!-- ADD TENANT BUTTON -->
+
+        <button
+            class="btn btn-primary mt-3"
+            onclick="showTenantForm()">
+
+            + Add Tenant
+
+        </button>
+
+
+
+        <!-- TENANT FORM -->
+
+        <div
+            id="tenantForm"
+            class="card mt-3 p-4 shadow-sm"
+            style="display: none;">
+
+            <h4
+                class="mb-4"
+                id="tenantFormTitle">
+
+                Add New Tenant
+
+            </h4>
+
+
+
+            <!-- NAME -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    id="tenantName"
+                    class="form-control"
+                    placeholder="Enter tenant name">
+
+            </div>
+
+
+
+            <!-- PHONE -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Phone
+                </label>
+
+                <input
+                    type="text"
+                    id="tenantPhone"
+                    class="form-control"
+                    placeholder="Enter phone number">
+
+            </div>
+
+
+
+            <!-- EMAIL -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="tenantEmail"
+                    class="form-control"
+                    placeholder="Enter email">
+
+            </div>
+
+
+
+            <!-- GENDER -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Gender
+                </label>
+
+                <select
+                    id="tenantGender"
+                    class="form-select">
+
+                    <option value="">
+                        Select Gender
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- ADDRESS -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Address
+                </label>
+
+                <input
+                    type="text"
+                    id="tenantAddress"
+                    class="form-control"
+                    placeholder="Enter address">
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div>
+
+                <button
+                    class="btn btn-success"
+                    id="tenantSaveButton"
+                    onclick="addTenant()">
+
+                    Save Tenant
+
+                </button>
+
+
+                <button
+                    class="btn btn-secondary ms-2"
+                    onclick="hideTenantForm()">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TENANT TABLE -->
+
+        <div class="table-responsive mt-4">
+
+            <table
+                class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Name</th>
+
+                        <th>Phone</th>
+
+                        <th>Email</th>
+
+                        <th>Gender</th>
+
+                        <th>Address</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="tenantTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- ROOM MANAGEMENT -->
+    <!-- ================================================= -->
+
+    <div class="mt-5">
+
+        <h3>Room Management</h3>
+
+
+        <!-- ADD ROOM BUTTON -->
+
+        <button
+            class="btn btn-primary mt-3"
+            onclick="showRoomForm()">
+
+            + Add Room
+
+        </button>
+
+
+
+        <!-- ROOM FORM -->
+
+        <div
+            id="roomForm"
+            class="card mt-3 p-4 shadow-sm"
+            style="display: none;">
+
+            <h4
+                class="mb-4"
+                id="roomFormTitle">
+
+                Add New Room
+
+            </h4>
+
+
+
+            <!-- ROOM NUMBER -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Room Number
+                </label>
+
+                <input
+                    type="text"
+                    id="roomNumber"
+                    class="form-control"
+                    placeholder="Example: A-101">
+
+            </div>
+
+
+
+            <!-- CAPACITY -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Capacity
+                </label>
+
+                <input
+                    type="number"
+                    id="roomCapacity"
+                    class="form-control"
+                    placeholder="Example: 3">
+
+            </div>
+
+
+
+            <!-- OCCUPIED -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Occupied
+                </label>
+
+                <input
+                    type="number"
+                    id="roomOccupied"
+                    class="form-control"
+                    placeholder="Example: 1">
+
+            </div>
+
+
+
+            <!-- RENT -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Monthly Rent
+                </label>
+
+                <input
+                    type="number"
+                    id="roomRent"
+                    class="form-control"
+                    placeholder="Example: 6500">
+
+            </div>
+
+
+
+            <!-- BUTTONS -->
+
+            <div>
+
+                <button
+                    class="btn btn-success"
+                    id="roomSaveButton"
+                    onclick="addRoom()">
+
+                    Save Room
+
+                </button>
+
+
+                <button
+                    class="btn btn-secondary ms-2"
+                    onclick="hideRoomForm()">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ROOM TABLE -->
+
+        <div class="table-responsive mt-4">
+
+            <table
+                class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Room Number</th>
+
+                        <th>Capacity</th>
+
+                        <th>Occupied</th>
+
+                        <th>Monthly Rent</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="roomTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    <!-- ================================================= -->
+<!-- PAYMENT MANAGEMENT -->
+<!-- ================================================= -->
+
+<div class="mt-5">
+
+    <h3>Payment Management</h3>
+
+    <button
+        class="btn btn-primary mt-3"
+        onclick="showPaymentForm()">
+
+        + Add Payment
+
+    </button>
+
+
+    <!-- Payment Form -->
+
+    <div
+        id="paymentForm"
+        class="card mt-3 p-4 shadow-sm"
+        style="display: none;">
+
+        <h4
+            class="mb-4"
+            id="paymentFormTitle">
+
+            Add New Payment
+
+        </h4>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Tenant ID
+            </label>
+
+            <input
+                type="number"
+                id="paymentTenantId"
+                class="form-control"
+                placeholder="Example: 1">
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Amount
+            </label>
+
+            <input
+                type="number"
+                id="paymentAmount"
+                class="form-control"
+                placeholder="Example: 6500">
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Payment Date
+            </label>
+
+            <input
+                type="date"
+                id="paymentDate"
+                class="form-control">
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Payment Month
+            </label>
+
+            <input
+                type="text"
+                id="paymentMonth"
+                class="form-control"
+                placeholder="Example: October 2026">
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Payment Status
+            </label>
+
+            <select
+                id="paymentStatus"
+                class="form-select">
+
+                <option value="">
+                    Select Status
+                </option>
+
+                <option value="PAID">
+                    PAID
+                </option>
+
+                <option value="PENDING">
+                    PENDING
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div>
+
+            <button
+                class="btn btn-success"
+                id="paymentSaveButton"
+                onclick="addPayment()">
+
+                Save Payment
+
+            </button>
+
+
+            <button
+                class="btn btn-secondary ms-2"
+                onclick="hidePaymentForm()">
+
+                Cancel
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Payment Table -->
+
+    <div class="table-responsive mt-4">
+
+        <table
+            class="table table-bordered table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Tenant ID</th>
+                    <th>Amount</th>
+                    <th>Payment Date</th>
+                    <th>Payment Month</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="paymentTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- COMPLAINT MANAGEMENT -->
+<!-- ================================================= -->
+
+<div class="mt-5">
+
+    <h3>Complaint Management</h3>
+
+    <button
+        class="btn btn-primary mt-3"
+        onclick="showComplaintForm()">
+
+        + Add Complaint
+
+    </button>
+
+
+    <!-- Complaint Form -->
+
+    <div
+        id="complaintForm"
+        class="card mt-3 p-4 shadow-sm"
+        style="display: none;">
+
+        <h4
+            class="mb-4"
+            id="complaintFormTitle">
+
+            Add New Complaint
+
+        </h4>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Tenant ID
+            </label>
+
+            <input
+                type="number"
+                id="complaintTenantId"
+                class="form-control"
+                placeholder="Example: 1">
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Description
+            </label>
+
+            <textarea
+                id="complaintDescription"
+                class="form-control"
+                rows="3"
+                placeholder="Enter complaint description">
+            </textarea>
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Complaint Date
+            </label>
+
+            <input
+                type="date"
+                id="complaintDate"
+                class="form-control">
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Status
+            </label>
+
+            <select
+                id="complaintStatus"
+                class="form-select">
+
+                <option value="">
+                    Select Status
+                </option>
+
+                <option value="OPEN">
+                    OPEN
+                </option>
+
+                <option value="RESOLVED">
+                    RESOLVED
+                </option>
+
+                <option value="IN_PROGRESS">
+                    IN PROGRESS
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div>
+
+            <button
+                class="btn btn-success"
+                id="complaintSaveButton"
+                onclick="addComplaint()">
+
+                Save Complaint
+
+            </button>
+
+
+            <button
+                class="btn btn-secondary ms-2"
+                onclick="hideComplaintForm()">
+
+                Cancel
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Complaint Table -->
+
+    <div class="table-responsive mt-4">
+
+        <table
+            class="table table-bordered table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Tenant ID</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="complaintTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+
+    <!-- Bottom spacing -->
+
+    <div class="mb-5"></div>
+
+
+</div>
+
+
+
+<!-- ============================= -->
+<!-- JAVASCRIPT -->
+<!-- ============================= -->
+
+<script src="script.js"></script>
+
+
+<script>
+
+    loadDashboard();
+
+    loadTenants();
+
+    loadRooms();
+    loadPayments();
+    loadComplaints();
+
+</script>
+
+
+</body>
+
+</html>
